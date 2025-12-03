@@ -1,0 +1,22 @@
+# Docker Compose for local development and DO deployment
+version: '3.8'
+
+services:
+  office-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      # Persist task data
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

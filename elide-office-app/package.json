@@ -1,0 +1,27 @@
+{
+  "name": "elide-office-app",
+  "version": "1.0.0",
+  "description": "Simple office team coordination app built with Elide runtime",
+  "main": "server.js",
+  "scripts": {
+    "start": "elide run --serve server.js",
+    "dev": "elide run --serve --watch server.js",
+    "docker:build": "docker build -t elide-office-app .",
+    "docker:run": "docker run -p 3000:3000 -v $(pwd)/data:/app/data elide-office-app",
+    "docker:compose": "docker-compose up -d",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui"
+  },
+  "keywords": [
+    "elide",
+    "office",
+    "coordination",
+    "task-management",
+    "mobile"
+  ],
+  "author": "contextOS Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
