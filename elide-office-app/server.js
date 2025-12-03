@@ -13,8 +13,8 @@ const fs = require('fs');
 const path = require('path');
 
 const server = Elide.http;
-const router = server.getRouter();
-const config = server.getConfig();
+const router = server.router;
+const config = server.config;
 
 // ============ DATA STORE ============
 // In-memory store (persists to JSON file)
@@ -68,13 +68,13 @@ function initSampleTasks() {
 
 // ============ UTILITIES ============
 function sendJSON(response, status, data) {
-  response.setHeader('Content-Type', 'application/json');
-  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.header('Content-Type', 'application/json');
+  response.header('Access-Control-Allow-Origin', '*');
   response.send(status, JSON.stringify(data));
 }
 
 function sendHTML(response, status, html) {
-  response.setHeader('Content-Type', 'text/html; charset=utf-8');
+  response.header('Content-Type', 'text/html; charset=utf-8');
   response.send(status, html);
 }
 
